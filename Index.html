@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>|Mapeamento|</title>
+    <title>Exemplo de Teclado</title>
+</head>
+<style>
+    #Bum {
+        background-color:orange;
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        justify-content: center;
+    }
+    body{
+        justify-content: center;
+    }
+</style>
+<body>
+    <h2 id="resultado"></h2>
+    <div id="Bum"></div>
+</body>
+<script>
+    window.onload = function() {
+    document.addEventListener("keydown", teclaPressionada);
+    };
+    function teclaPressionada(event) {
+        let quadrado = document.getElementById("Bum");
+        let tecla = event.key
+        let posicaoBum = quadrado.getBoundingClientRect();
+        var criaoprint = document.createElement("p");
+        let allpoder = document.querySelectorAll('[id="poderzin"]');
+        console.log("Tecla pressionada: " + tecla);
+        switch (tecla) {
+            case "ArrowUp":
+                let posicaoA = parseInt(quadrado.style.top) || 0;
+                quadrado.style.top = (posicaoA - 20) + "px";
+                break;
+            case "ArrowDown":
+                let posicaoB = parseInt(quadrado.style.top) || 0;
+                quadrado.style.top = (posicaoB + 20) + "px";
+                break;
+            case "ArrowRight":
+                let posicaoC = parseInt(quadrado.style.left) || 0;
+                quadrado.style.left = (posicaoC + 20) + "px";
+                break;
+            case "ArrowLeft":
+                let posicaoD = parseInt(quadrado.style.left) || 0;
+                quadrado.style.left = (posicaoD - 20) + "px";
+                break;
+            case  "a":
+                criaoprint.id = `poderzin`;
+                criaoprint.textContent = "<----------------->";
+                criaoprint.style.position = "absolute";
+                criaoprint.style.top = posicaoBum.top + "px";
+                criaoprint.style.left = (posicaoBum.right + 20) + "px";
+                criaoprint.style.top = (posicaoBum.top - 20) + "px"; 
+                document.body.appendChild(criaoprint);
+                    break;
+            case "Backspace":
+                    allpoder.forEach(function(p){
+                    p.remove();
+                    console.log (allpoder);
+                })
+        }
+    }
+</script>
+</html>
